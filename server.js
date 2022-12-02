@@ -87,4 +87,10 @@ function initial() {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
+const routes = require("./app/routes/crudRoutes");
+app.use("/api", routes);
+
+// const routess = require("./app/routes/crudRoutes");
+// app.use("/ap", routess);
+
 // set port, listen for requests
