@@ -1,14 +1,15 @@
 const express = require("express");
-const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
+// ADD THIS
+var cors = require("cors");
+app.use(cors());
+// var corsOptions = {
+//   origin: "http://localhost:8081",
+// };
 
-var corsOptions = {
-  origin: "http://localhost:8081",
-};
-
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -88,7 +89,12 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
 const routes = require("./app/routes/crudRoutes");
+const routespost = require("./app/routes/postRoutes");
+const routesuserget = require("./app/routes/userGetRoutes");
+
 app.use("/api", routes);
+app.use("/api", routespost);
+app.use("/api", routesuserget);
 
 // const routess = require("./app/routes/crudRoutes");
 // app.use("/ap", routess);
