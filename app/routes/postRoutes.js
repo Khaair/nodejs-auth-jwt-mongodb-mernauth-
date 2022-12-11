@@ -25,7 +25,7 @@ router.post("/savepost", async (req, res) => {
 });
 
 // Get Single information
-router.route("/showSIngle/:id").get((req, res) => {
+router.route("/show-single-post/:id").get((req, res) => {
   postModel.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
@@ -41,7 +41,7 @@ router.delete("/delete-post/:id", async (req, res) => {
   res.send({ msg: "deleted", data: data });
 });
 
-router.post("/update/:id", async (req, res) => {
+router.post("/update-post/:id", async (req, res) => {
   console.log(req.params.id, req.body);
 
   try {
@@ -49,8 +49,8 @@ router.post("/update/:id", async (req, res) => {
       { _id: req.params.id },
       {
         title: req.body.title,
-        author: req.body.author,
         body: req.body.body,
+        userId: req.body.userId,
       }
     );
 
