@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const crudSchema = new Schema({
-  title: {
+const userPhotosSchema = new Schema({
+  username: {
     type: String,
     required: true,
   },
-  body: {
+  url: {
     type: String,
     required: true,
   },
@@ -14,10 +14,6 @@ const crudSchema = new Schema({
     type: String,
     required: true,
   },
-  postTime: {
-    type: String,
-    required: true,
-  },
 });
 
-module.exports = mongoose.model("postmodel", crudSchema);
+module.exports = mongoose.model("userPhotosmodel", userPhotosSchema);

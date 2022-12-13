@@ -1,20 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const postModel = require("../models/postmodel");
+const userPhotosModel = require("../models/userPhotosmodel");
 
-router.get("/showposts", async (req, res) => {
-  let data = await postModel.find();
+router.get("/show-user-photo", async (req, res) => {
+  let data = await userPhotosModel.find();
   res.send(data);
 });
 
-router.post("/savepost", async (req, res) => {
+router.post("/save-user-photo", async (req, res) => {
   console.log(req.body);
 
-  const tt = new postModel({
-    title: req.body.title,
-    body: req.body.body,
+  const tt = new userPhotosModel({
+    username: req.body.username,
+    url: req.body.url,
     userId: req.body.userId,
-    postTime: req.body.postTime,
   });
 
   try {
@@ -26,8 +25,8 @@ router.post("/savepost", async (req, res) => {
 });
 
 // Get Single information
-router.route("/show-single-post/:id").get((req, res) => {
-  postModel.findById(req.params.id, (error, data) => {
+router.route("/show-user-single-photo/:id").get((req, res) => {
+  userPhotosModel.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -38,7 +37,7 @@ router.route("/show-single-post/:id").get((req, res) => {
 
 router.delete("/delete-post/:id", async (req, res) => {
   console.log(req.params.id);
-  let data = await postModel.deleteOne({ _id: req.params.id });
+  let data = await userPhotosModel.deleteOne({ _id: req.params.id });
   res.send({ msg: "deleted", data: data });
 });
 
@@ -46,13 +45,12 @@ router.post("/update-post/:id", async (req, res) => {
   console.log(req.params.id, req.body);
 
   try {
-    let updatee = await postModel.findByIdAndUpdate(
+    let updatee = await userPhotosModel.findByIdAndUpdate(
       { _id: req.params.id },
       {
         title: req.body.title,
         body: req.body.body,
         userId: req.body.userId,
-        postTime: req.body.postTime,
       }
     );
 
