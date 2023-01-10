@@ -93,12 +93,14 @@ const routespost = require("./app/routes/postRoutes");
 const routesuserget = require("./app/routes/userGetRoutes");
 const routescomment = require("./app/routes/commentRoutes");
 const routesuserphotos = require("./app/routes/userPhotosRoutes");
+const routeslike = require("./app/routes/likeRoutes");
 
 app.use("/api", routes);
 app.use("/api", routespost);
 app.use("/api", routesuserget);
 app.use("/api", routescomment);
 app.use("/api", routesuserphotos);
+app.use("/api", routeslike);
 
 // const routess = require("./app/routes/crudRoutes");
 // app.use("/ap", routess);
